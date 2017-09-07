@@ -17,7 +17,7 @@ exports.getAllEmployees = function(req, res, next){
 		res.status(200)
 		.json({
 			status: 'success',
-			data: result.rows,
+			employees: result.rows,
 			message: 'Retrieved All employees'
 		});	
 	});
@@ -77,12 +77,12 @@ exports.getEmployee = function(req, res, next){
 }; 
 
 exports.getGrades = function(req, res, next){
-	query("select DISTINCT grade from EMP_DTL", {}, function(err, result){
+	query("select DISTINCT grade from EMP_DTL ORDER BY grade ASC", {}, function(err, result){
 		if(err){return next(err);}
 		res.status(200)
 		.json({
 			status: 'success',
-			data: result.rows,
+			grades: result.rows,
 			message: 'Retrieved All grades'
 		});	
 	});
@@ -94,7 +94,7 @@ exports.getEmployeesByGrade = function(req, res, next){
 		res.status(200)
 		.json({
 			status: 'success',
-			data: result.rows,
+			employees: result.rows,
 			message: 'Retrieved All employees by grades'
 		});	
 	});

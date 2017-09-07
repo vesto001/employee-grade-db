@@ -6,9 +6,13 @@
 var express = require('express')
   , http = require('http');
 
+
+var cors = require('cors');
+
 var model = require("./queries");
 
 var app = express();
+app.use(cors({origin: '*'}));
 app.set('port',process.env.PORT || 4000);
 app.use(express.bodyParser());
 app.use(app.router);
